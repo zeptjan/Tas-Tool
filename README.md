@@ -11,9 +11,9 @@ An unofficial browser port of the hardened PolyTrack 0.6.3 savestate tool, hoste
 - Save / load the current track's state: Q / F.
 - Pause / resume: F4.
 - Advance one physics millisecond: **Step +1ms** in the bottom toolbar.
-- The panel includes simulation speed controls, TAS import/export and configurable key bindings.
+- The panel includes simulation speed controls and configurable key bindings. TAS import and export have been removed.
 
-One state is retained per track while the page stays open. Export recordings as backups before closing the page. Settings and local records are namespaced so they do not overwrite another project hosted on the same GitHub Pages origin.
+One state is retained per track while the page stays open. Settings and local records are namespaced so they do not overwrite another project hosted on the same GitHub Pages origin.
 
 ## Records and security
 
@@ -34,10 +34,11 @@ Browser checks verified driving, pause, save/load from frame 6753 back to saved 
 ```sh
 mkdir dist
 tar -xzf site-bundle.tar.gz -C dist
+node scripts/remove-transfer.cjs dist
 python -m http.server 8000 --directory dist
 ```
 
-The Pages workflow extracts this tested bundle and deploys the `dist` directory. No installation of the desktop game is required by a visitor. Desktop signing keys and authentication material are excluded.
+The Pages workflow extracts this tested bundle, removes TAS import/export with the tracked patch script, and deploys the `dist` directory. No installation of the desktop game is required by a visitor. Desktop signing keys and authentication material are excluded.
 
 ## Credits
 
