@@ -7,6 +7,6 @@ if(s.includes('ptas-export')){
 }
 for(const term of ['ptas-export','ptas-import','window.__PTAS.exportRecording','window.__PTAS.exportTASText','window.__PTAS.importRecording','window.__PTAS.applyRecording','window.__PTAS.tasTextToRecording'])if(s.includes(term))throw Error('Transfer reference remains: '+term);
 new Function(s);fs.writeFileSync(file,s);
-const htmlFile=path.join(root,'index.html');let h=fs.readFileSync(htmlFile,'utf8');h=h.replace('change simulation speed, import or export recordings, and customize key bindings.','change simulation speed and customize key bindings.').replace(' Export recordings as backups.','');fs.writeFileSync(htmlFile,h);
+const htmlFile=path.join(root,'index.html');let h=fs.readFileSync(htmlFile,'utf8');h=h.replace('change simulation speed, import or export recordings, and customize key bindings.','change simulation speed and customize key bindings.').replace(' Export recordings as backups.','');h=h.replace(/src="main\.bundle\.js(?:\?[^"]*)?"/,'src="main.bundle.js?v=no-transfer-20261115"');fs.writeFileSync(htmlFile,h);
 console.log('Removed TAS import/export UI, file picker, handlers and exposed transfer methods.');
 
